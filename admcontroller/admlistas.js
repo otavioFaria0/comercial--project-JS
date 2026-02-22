@@ -7,8 +7,6 @@ btnCarregar.addEventListener('click', () => {
 
     const dados = JSON.parse(localStorage.getItem(tipo)) || [];
 
-    if (dados.length === 0)
-
     montarTabela(dados);
 });
 
