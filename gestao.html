@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gestão</title>
+    <link rel="stylesheet" href="styles/gestao.css" />
+  </head>
+  <body>
+    <header class="cabecalho">
+          <nav>
+              <a class="cabecalho__link" href="index.html">Home</a>
+          </nav>
+          <h1><span class="accent">Gestão: </span> clientes, produtos e pedidos</h1>
+    </header>
+
+    <div class="container">
+      <p>
+        Funções exclusivas para o administrador, onde é possível gerenciar clientes, produtos e pedidos. Acesse as seções abaixo para realizar as operações desejadas.
+      </p>
+  <nav>
+      <button onclick="abrirPagina('admcontroller/admclientes.html')">Clientes</button>
+      <button onclick="abrirPagina('admcontroller/admprodutos.html')">Produtos</button>
+      <button onclick="abrirPagina('admcontroller/admpedidos.html')">Pedidos</button>
+      <button onclick="abrirPagina('admcontroller/admlistas.html')">Listagens</button>
+  </nav>
+  
+  <iframe id="conteudo" src=""></iframe>
+  
+  <script>
+      function abrirPagina(pagina) {
+          document.getElementById('conteudo').src = pagina;
+      }
+  </script>
+    </div>
+    <script src=""></script>
+  </body>
+  <footer>
+    <p class="footer">&copy; Desenvolvido por Otavio Faria</p>
+</footer>
+</html>

@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Teste do Sistema</title>
+    <link rel="stylesheet" href="../styles/secoesadm.css" />
+</head>
+<body class="container">
+
+    <h2>Criar Produto</h2>
+    <input id="nome" placeholder="Nome">
+    <input id="preco" placeholder="Preço">
+    <input id="categoria" placeholder="Categoria">
+    <input id="estoque" placeholder="Estoque">
+    <button id="btnCriar">Criar Produto</button>
+    <div id="avisoCriar" class="hidden">
+        <div class="aviso-conteudo">
+            <p>Produto criado!</p>
+            <p id="avisoCriar"></p>
+            <button id="fecharAviso">Fechar</button>
+        </div>
+    </div>
+
+    <h2>Buscar Produto</h2>
+    <input id="buscaValor" placeholder="Nome ou ID">
+    <select id="tipoBusca">
+        <option value="nome">Nome</option>
+        <option value="id">ID</option>
+    </select>
+    <button id="btnBuscar">Buscar</button>
+    <div id="avisoBuscar" class="hidden">
+        <div class="aviso-conteudo" >
+            <p>Produto encontrado!</p>
+            <p id="avisoConteudo"></p>
+            <button id="fecharAvisoBuscar">Fechar</button>
+        </div>
+    </div>
+
+    <h2>Editar Produto</h2>
+    <input id="editarBusca" placeholder="ID do produto">
+    <input id="campo" placeholder="Campo (nome, preco, categoria, estoque...)">
+    <input id="novoValor" placeholder="Novo valor">
+    <button id="btnEditar">Editar</button>
+    <div id="avisoEditar" class="hidden">
+        <div class="aviso-conteudo" >
+            <p>Produto editado!</p>
+            <p id="avisoConteudoEditar"></p>
+            <p id="avisoConteudoEditar2"></p>
+            <button id="fecharAvisoEditar">Fechar</button>
+        </div>
+    </div>
+
+    <h2>Apagar Produto</h2>
+    <input id="apagarId" placeholder="ID do produto">
+    <button id="btnApagar">Apagar</button>
+    <div id="avisoApagar" class="hidden">
+        <div class="aviso-conteudo" >
+            <p id="avisoConteudoApagar"></p>
+            <p>Produto será removido:</p>
+            <button id="fecharAvisoApagar">Confirmar Exclusão</button>
+            <button id="cancelarAviso">Cancelar</button>
+        </div>
+    </div>
+
+    <script type="module" src="./admprodutos.js"></script>
+</body>
+</html>

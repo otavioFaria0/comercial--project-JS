@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Teste do Sistema</title>
+    <link rel="stylesheet" href="../styles/secoesadm.css" />
+</head>
+<body class="container">
+
+    <h2>Criar Cliente</h2>
+    <input id="nome" placeholder="Nome">
+    <input id="cpf" placeholder="CPF">
+    <input id="telefone" placeholder="Telefone">
+    <input id="email" placeholder="Email">
+    <button id="btnCriar">Criar</button>
+    <div id="avisoCriar" class="hidden">
+        <div class="aviso-conteudo">
+            <p>Cliente salvo!</p>
+            <p id="criarID"></p>
+            <button id="fecharAviso">Fechar</button>
+        </div>
+    </div>
+    
+
+    <h2>Buscar Cliente</h2>
+    <input id="buscaValor" placeholder="CPF ou ID">
+    <select id="tipoBusca">
+        <option value="cpf">CPF</option>
+        <option value="id">ID</option>
+    </select>
+    <button id="btnBuscar">Buscar</button>
+    <div id="avisoBuscar" class="hidden">
+        <div class="aviso-conteudo" >
+            <p>Cliente encontrado!</p>
+            <p id="avisoConteudo"></p>
+            <button id="fecharAvisoBuscar">Fechar</button>
+        </div>
+    </div>
+
+    <h2>Editar Cliente</h2>
+    <input id="editarBusca" placeholder="ID ou CPF">
+    <select id="tipoBuscaEditar">
+        <option value="cpf">CPF</option>
+        <option value="id">ID</option>
+    </select>
+    <input id="campo" placeholder="Campo (nome, telefone...)">
+    <input id="novoValor" placeholder="Novo valor">
+    <button id="btnEditar">Editar</button>
+    <div id="avisoEditar" class="hidden">
+        <div class="aviso-conteudo">
+            <p>Cliente alterado!</p>
+            <p id="avisoConteudoEditar"></p>
+            <p id="avisoConteudoEditar2"></p>
+            <button id="fecharAvisoEditar">Fechar</button>
+        </div>
+    </div>
+
+    <h2>Apagar Cliente</h2>
+    <input id="apagarid" placeholder="ID do cliente">
+    <button id="btnApagar">Apagar</button>
+    <div id="avisoApagar" class="hidden">
+        <div class="aviso-conteudo">
+            <p id="avisoConteudoApagar"></p>
+            <p>Cliente será removido:</p>
+            <button id="fecharAvisoApagar">Confirmar Exclusão</button>
+            <button id="cancelarAvisoApagar">Cancelar</button>
+        </div>
+    </div>
+
+    <script type="module" src="./admclientes.js"></script>
+</body>
+</html>
