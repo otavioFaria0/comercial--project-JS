@@ -5,6 +5,10 @@ body {
     padding: 2%;
 }
 
+.hidden {
+    display: none;
+}
+
 h1 {
     border-bottom: 2px solid #3789db;
     padding-bottom: 10px;

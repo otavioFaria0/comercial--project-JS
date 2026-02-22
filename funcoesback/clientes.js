@@ -57,6 +57,8 @@ export function editarCliente(tipoDeBusca , dadoDeBusca, mudanca, dadoNovo){
         return ;
     }
 
+    mudanca = mudanca.toLowerCase().trim();
+
     let cliente = buscarCliente(tipoDeBusca, dadoDeBusca);
 
     if (!cliente){

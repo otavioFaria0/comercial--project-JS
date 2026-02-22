@@ -29,5 +29,6 @@ btnGerar.addEventListener('click', () => {
     Cliente: ${idCliente}
     Produto: ${idProduto}
     Quantidade: ${quantidade}
-    Valor: ${pedido}`;
+    Valor: ${pedido.valor}
+    Data: ${pedido.data}`;
 });

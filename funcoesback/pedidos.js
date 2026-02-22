@@ -45,12 +45,15 @@ export function gerarPedido(idCliente, idProduto, quantidade){
         const valor = quantidade *produto.preco;
         const novoEstoque = produto.estoque - quantidade;
 
+        const data = new Date();
+
         const pedido = {
             id: id,
             cliente: cliente.id,
             produto: produto.id,
             quantidade: quantidade,
-            valor: valor
+            valor: valor,
+            data: data
         }
 
         editarProduto(idProduto, 'estoque', novoEstoque);
@@ -61,7 +64,7 @@ export function gerarPedido(idCliente, idProduto, quantidade){
         salvarDados('pedidos' , pedidos);
         localStorage.setItem('maiorIdPedidos' , id + 1);
 
-        return valor;
+        return pedido;
         
     } else if (produto.estoque < quantidade){
         alert('Estoque insuficiente.');
