@@ -3,7 +3,8 @@ import {
   criarCliente,
   buscarCliente,
   editarCliente,
-  apagarCliente
+  apagarCliente, 
+  normalizarCpf
 } from '../funcoesback/clientes.js';
 
 
@@ -17,15 +18,12 @@ btnCriar.addEventListener('click', () => {
     const telefone = document.getElementById("telefone").value;
     const email = document.getElementById("email").value;
     
-    if (nome === '' || cpf === '' || telefone === '' || email === ''){
-        alert('Por favor, preencha todos os campos');
-        return ;
-    }
     
     if(criarCliente(nome, cpf , telefone , email) === false){
         return ;
     };
-    const cliente = buscarCliente('cpf', cpf);
+    const cpfApenasNumeros = normalizarCpf(cpf);
+    const cliente = buscarCliente('cpf', cpfApenasNumeros);
 
     const avisoID = document.getElementById('criarID');
     avisoID.innerHTML = `Cliente criado! | ID: ${cliente.id}`;

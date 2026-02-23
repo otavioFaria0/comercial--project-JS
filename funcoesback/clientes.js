@@ -18,8 +18,50 @@
 
 export function criarCliente(nome, cpf, telefone, email){
 
-    if(indicePorCpf[cpf]){
+    //verifica se todos os campos foram preenchidos
+    if (nome === '' || cpf === '' || telefone === '' || email === ''){
+        alert('Por favor, preencha todos os campos.');
+        return false;
+    }
+
+    //validações individuais por campo
+
+    //nome 
+    if (nome.length < 3){
+        alert('Por favor, digite um nome valido.');
+        return false;
+    }
+    if (/[0-9]/.test(nome) === true){
+        alert('Por favor, digite um nome valido.');
+        return false;
+    }
+
+
+    //cpf
+    const cpfApenasNumeros = normalizarCpf(cpf);
+    if (cpfApenasNumeros.length !== 11){
+        alert('Por favor, digite um CPF valido.');
+        return false;
+    }
+    if (indicePorCpf[cpfApenasNumeros]){
         alert('CPF já registrado, digite um CPF válido.');
+        return false;
+    }
+
+    //telefone;
+    const telefoneApenasNumeros = telefone.replace(/[^0-9]/g, '');
+    if (telefoneApenasNumeros.length !== 11){
+        alert('Por favor, digite um telefone valido.');
+        return false;
+    }
+    if (/[a-zA-Z]/.test(telefone) === true){
+        alert('Por favor, digite um telefone valido.');
+        return false;
+    }
+
+    //email
+    if (email.includes('@') === false){
+        alert('Por favor, digite um email valido.');
         return false;
     }
 
@@ -28,13 +70,13 @@ export function criarCliente(nome, cpf, telefone, email){
     const cliente = {
         id: id,
         nome: nome,
-        cpf: cpf,
-        telefone: telefone,
+        cpf: cpfApenasNumeros,
+        telefone: telefoneApenasNumeros,
         email: email
     }
     clientes.push(cliente);
     // inclui na "tabela hash"
-    indicePorCpf[cpf]=cliente;
+    indicePorCpf[cpfApenasNumeros]=cliente;
     indicePorIdClientes[id]=cliente;
 
     salvarDados('clientes', clientes);//altera a lista inteira e salva ela no localStorage
@@ -107,4 +149,8 @@ export function validarCliente(cliente){
     } else {
         return true;
     }
+}
+
+export function normalizarCpf(cpf){
+    return cpf.replace(/[^0-9]/g, '');
 }
