@@ -37,42 +37,43 @@ export function gerarPedido(idCliente, idProduto, quantidade){
     const produto = buscarProduto('id' , idProduto);
 
     if (validarClienteEObjeto(cliente, produto) === false) { return };
-
-    if (produto.estoque >= quantidade && produto.ativo === true){
-
-        const id = Number(localStorage.getItem('maiorIdPedidos')) || 1;
-
-        const valor = quantidade *produto.preco;
-        const novoEstoque = produto.estoque - quantidade;
-
-        const data = new Date();
-
-        const pedido = {
-            id: id,
-            cliente: cliente.id,
-            produto: produto.id,
-            quantidade: quantidade,
-            valor: valor,
-            data: data
-        }
-
-        editarProduto(idProduto, 'estoque', novoEstoque);
-
-        pedidos.unshift(pedido);
-        indicePedidos[id]= pedido;
-
-        salvarDados('pedidos' , pedidos);
-        localStorage.setItem('maiorIdPedidos' , id + 1);
-
-        return pedido;
-        
+    if (quantidade <= 0){
+        alert('Quantidade inválida.');
+        return false;
     } else if (produto.estoque < quantidade){
         alert('Estoque insuficiente.');
         return false;
     } else if (!produto.ativo){
         alert('Produto inativo.');
         return false;
+    } 
+    
+    
+    const id = Number(localStorage.getItem('maiorIdPedidos')) || 1;
+
+    const valor = quantidade *produto.preco;
+    const novoEstoque = produto.estoque - quantidade;
+
+    const data = new Date();
+
+    const pedido = {
+        id: id,
+        cliente: cliente.id,
+        produto: produto.id,
+        quantidade: quantidade,
+        valor: valor,
+        data: data
     }
+
+    editarProduto(idProduto, 'estoque', novoEstoque);
+
+    pedidos.unshift(pedido);
+    indicePedidos[id]= pedido;
+
+    salvarDados('pedidos' , pedidos);
+    localStorage.setItem('maiorIdPedidos' , id + 1);
+
+    return pedido;
 }
 
 
