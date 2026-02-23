@@ -21,19 +21,50 @@ export function criarProduto(nome, preco, estoque, categoria){
     
     const id = Number(localStorage.getItem('maiorIdProdutos')) || 1;
 
-    nome = formatarNome(nome)
+    nome = formatarNome(nome);
 
+    let ativo = true;
+
+    // validações individuais por campo
+    // nome
+    if (nome.length <= 3 || nome.length > 30 || /[0-9]/.test(nome) === true){
+        alert('Por favor, digite um nome valido.');
+        return;
+    }
     if (indicePorNomeProdutos[nome]){
         alert('Já existe um produto registrado com esse nome.')
         return;
     }
+
+    // preco
+    if (isNaN(preco) || preco <= 0 || preco > 100000){
+        alert('Por favor, digite um preço valido.');
+        return;
+    } 
+
+    // estoque
+    if (isNaN(estoque) || estoque < 0){
+        alert('Por favor, digite um estoque valido.');
+        return;
+    }
+
+    // categoria
+    if (categoria.length <= 3 || categoria.length > 30 || /[0-9]/.test(categoria) === true){
+        alert('Por favor, digite uma categoria valida.');
+        return;
+    }
+
+    if (Number(estoque) === 0){
+        ativo=false;
+    }
+
     
     const produto = {
         nome: nome,
         preco: preco,
         estoque: estoque,
         categoria: categoria,
-        ativo: true
+        ativo: ativo
     }
 
     produto['id'] = id;
@@ -84,6 +115,7 @@ export function editarProduto(id, mudanca, dadoNovo){
     }
     if (mudanca === 'estoque'){
         if (dadoNovo > 0){
+            produto.ativo = true;
             produto.estoque = Number(dadoNovo);
             salvarDados('produtos' , produtos);
         } else if (dadoNovo === 0) {
