@@ -81,6 +81,20 @@ export function buscarPedido(idDoPedido){
         return indicePedidos[idDoPedido];
 }
 
+export function confirmarPedidos(idDoPedido){
+    const pedido = buscarPedido(idDoPedido);
+    const cliente = buscarCliente('id', pedido.cliente);
+
+    if (!pedido){
+        alert('Pedido nao encontrado');
+        return;
+    }
+
+    
+    
+}
+
+
 function validarClienteEObjeto(cliente,produto){
     if (!cliente){
     alert('Cliente não encontrado');

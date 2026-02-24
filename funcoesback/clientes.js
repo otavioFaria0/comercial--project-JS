@@ -12,7 +12,17 @@
         for (let i=0; i<clientes.length; i++){
             indicePorCpf[clientes[i]['cpf']] = clientes[i];
             indicePorIdClientes[clientes[i]['id']] = clientes[i];
+            let cliente = clientes[i];
+            cliente = {
+            id: cliente.id,
+            nome: cliente.nome,
+            cpf: cliente.cpfApenasNumeros,
+            telefone: cliente.telefoneApenasNumeros,
+            email: cliente.email,
+            status: 'ABERTO'
+        };
         }
+        salvarDados('clientes', clientes);
     }
 
 
@@ -72,7 +82,8 @@ export function criarCliente(nome, cpf, telefone, email){
         nome: nome,
         cpf: cpfApenasNumeros,
         telefone: telefoneApenasNumeros,
-        email: email
+        email: email,
+        status: 'ABERTO'
     }
     clientes.push(cliente);
     // inclui na "tabela hash"
