@@ -1,4 +1,4 @@
- import { salvarDados, buscarLista } from "./locstorage.js";
+ import { salvarDados, buscarLista, limparLista} from "./locstorage.js";
  import { buscarCliente} from './clientes.js';
  import { buscarProduto, editarProduto} from './produtos.js'
 
@@ -27,7 +27,6 @@ export function inicializacaoPedidos(){
 
 
 export function gerarPedido(idCliente, idProduto, quantidade){
-
     if (quantidade <= 0){
         alert('Quantidade inválida');
         return;
@@ -62,7 +61,8 @@ export function gerarPedido(idCliente, idProduto, quantidade){
         produto: produto.id,
         quantidade: quantidade,
         valor: valor,
-        data: data
+        data: data,
+        status: 'ABERTO'
     }
 
     editarProduto(idProduto, 'estoque', novoEstoque);

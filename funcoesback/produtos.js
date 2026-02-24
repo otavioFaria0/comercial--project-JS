@@ -27,7 +27,7 @@ export function criarProduto(nome, preco, estoque, categoria){
 
     // validações individuais por campo
     // nome
-    if (nome.length <= 3 || nome.length > 30 || /[0-9]/.test(nome) === true){
+    if (nome.length <= 3 || nome.length > 30){
         alert('Por favor, digite um nome valido.');
         return;
     }
