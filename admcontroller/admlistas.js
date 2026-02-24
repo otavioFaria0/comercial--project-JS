@@ -42,11 +42,15 @@ btnCarregar.addEventListener('click', () => {
 
         if (criterio === 'nome') {
             dados = quickSort(dados, 'nome');
-        } 
-        else if (criterio === 'id') {
+        } else if (criterio === 'id') {
             dados = quickSort(dados, 'id');
-
-        } 
+        } else if (criterio === 'preco') {
+            dados = quickSort(dados, 'preco');
+        } else if (criterio){
+            dados = quickSort(dados, 'estoque');
+        } else if (criterio === 'categoria') {
+            dados = quickSort(dados, 'categoria');
+        }
 
         montarTabela(dados);
         
@@ -70,10 +74,14 @@ btnCarregar.addEventListener('click', () => {
         else if (criterio === 'id') {
             dados = quickSort(dados, 'id');
 
-        } 
-        if (criterio === 'data') {
+        } else if (criterio === 'quantidade') {
+            dados = quickSort(dados, 'quantidade');
+        } else if (criterio === 'data') {
             dados = quickSort(dados, 'data');
+        } else if (criterio === 'status') {
+            dados = quickSort(dados, 'status');
         }
+
         montarTabela(dados);
     } 
 });
