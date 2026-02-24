@@ -21,7 +21,7 @@ export function inicializacaoPedidos(){
                 pedidosPorCliente[pedido.cliente] = [];
             }
 
-            pedidosPorCliente[pedidos[i].cliente].push(pedido);
+            pedidosPorCliente[pedido.cliente].push(pedido);
         }
     }
 
@@ -69,6 +69,7 @@ export function gerarPedido(idCliente, idProduto, quantidade){
 
     pedidos.unshift(pedido);
     indicePedidos[id]= pedido;
+    pedidosPorCliente[pedido.cliente].unshift(pedido);
 
     salvarDados('pedidos' , pedidos);
     localStorage.setItem('maiorIdPedidos' , id + 1);
@@ -76,6 +77,9 @@ export function gerarPedido(idCliente, idProduto, quantidade){
     return pedido;
 }
 
+export function buscarPedido(idDoPedido){
+        return indicePedidos[idDoPedido];
+}
 
 function validarClienteEObjeto(cliente,produto){
     if (!cliente){

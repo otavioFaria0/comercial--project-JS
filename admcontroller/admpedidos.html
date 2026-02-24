@@ -7,8 +7,7 @@
 </head>
 
 <body class="container">
-
-    <h1>Gerar Pedido</h1>
+    <h2>Gerar Pedido</h2>
 
     <label>ID do Cliente:</label><br>
     <input id="idCliente" type="number"><br><br>
@@ -21,8 +20,18 @@
 
     <button id="btnGerar">Gerar Pedido</button>
 
-    <h2>Resultado</h2>
-    <pre id="resultado"></pre>
+    <h2 id="hidden1" class="hidden">Resultado</h2>
+    <pre id="resultadoGerar"></pre>
+
+    <h2>Buscar Pedido</h2>
+
+    <label>ID do Pedido:</label><br>
+    <input id="idPedidoBuscar" type="number"><br><br>
+
+    <button id="btnBuscar">Buscar Pedido</button>
+
+    <h2 id="hidden2" class="hidden">Resultado da Busca</h2>
+    <pre id="resultadoBusca"></pre>
 
     <script type="module" src="./admpedidos.js"></script>
 </body>
