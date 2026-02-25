@@ -49,14 +49,8 @@ btnBuscar.addEventListener('click', () => {
     const cliente = buscarCliente(tipo, valor);
     
     if (!cliente){
-        alert ('Cliente não encontrado.')
-    } else {
-        ;
-        console.log(`Resultado da busca pelo ${tipo} "${valor}"`);
-        console.log("nome: ", cliente.nome);
-        console.log("CPF: ", cliente.cpf);
-        console.log("Telefone: ", cliente.telefone);
-        console.log("Email: ", cliente.email);
+        alert ('Cliente não encontrado.');
+        return;
     }
 
     const avisoConteudo = document.getElementById('avisoConteudo');
@@ -64,7 +58,8 @@ btnBuscar.addEventListener('click', () => {
     Nome: ${cliente.nome} |
     CPF: ${cliente.cpf} |
     Telefone: ${cliente.telefone} |
-    Email: ${cliente.email}`;
+    Email: ${cliente.email} |
+    STATUS : ${cliente.status}`;
 
 
     const popup = document.getElementById('avisoBuscar');
@@ -94,7 +89,8 @@ btnEditar.addEventListener('click', () => {
         CPF: ${cliente.cpf} |
         Nome: ${cliente.nome} |
         Telefone: ${cliente.telefone} |
-        Email: ${cliente.email}
+        Email: ${cliente.email} |
+        STATUS: ${cliente.status}
     `;
     
     
@@ -127,23 +123,33 @@ btnApagar.addEventListener('click', () => {
         return;
     }
 
-    const cliente = buscarCliente('id', idDoCliente);
 
+    const cliente = buscarCliente('id', idDoCliente);
     if (!cliente) {
         alert('Cliente não encontrado');
         return;
     }
 
-    idPendenteExclusao = idDoCliente;
+    const statusPadronizado = (cliente.status).toUpperCase();
+    
 
+    if (statusPadronizado === 'EM DIVIDA'){
+        alert('Nao pode excluir um cliente em divida');
+        return;
+    }
+
+    
+    idPendenteExclusao = idDoCliente;
+    
     const aviso = document.getElementById('avisoConteudoApagar');
     aviso.innerHTML = `
         CPF: ${cliente.cpf} |
         Nome: ${cliente.nome} |
         Telefone: ${cliente.telefone} |
-        Email: ${cliente.email}
+        Email: ${cliente.email} | 
+        STATUS: ${cliente.status} |
     `;
-
+        
     document.getElementById('avisoApagar').classList.remove('hidden');
 });
 
