@@ -105,17 +105,25 @@ export function buscarCliente(tipoDeBusca, dado ){
 
 export function editarCliente(tipoDeBusca , dadoDeBusca, mudanca, dadoNovo){
 
+    mudanca = mudanca.toLowerCase().trim();
+    
     if (mudanca === 'id'){
         alert('ID não pode ser alterado.');
-        return ;
+        return false;
     }
-
-    mudanca = mudanca.toLowerCase().trim();
 
     let cliente = buscarCliente(tipoDeBusca, dadoDeBusca);
 
     if (!cliente){
         alert('Cliente não encontrado.');
+        return false;
+    }
+
+    if (cliente[mudanca] === dadoNovo){
+        alert('Nenhuma alteração foi feita.');
+        return false;
+    } else if (cliente[mudanca] === undefined){
+        alert('Por favor, preencha com um campo valido.');
         return false;
     }
 
@@ -125,6 +133,19 @@ export function editarCliente(tipoDeBusca , dadoDeBusca, mudanca, dadoNovo){
         cliente.cpf = dadoNovo;
         
         indicePorCpf[dadoNovo] = cliente;
+        indicePorIdClientes[cliente.id] = cliente;
+    } 
+    if (mudanca === 'status'){
+        dadoNovo = dadoNovo.toUpperCase();
+
+        if (dadoNovo !== 'ABERTO' && dadoNovo !== 'PENDENTE'){
+            alert('Status deve ser ABERTO ou PENDENTE.');
+            return false;
+        }
+
+        cliente.status = dadoNovo;
+
+        indicePorCpf[cliente.cpf] = cliente;
         indicePorIdClientes[cliente.id] = cliente;
     } else  {
         cliente[mudanca] = dadoNovo;

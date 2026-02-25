@@ -77,32 +77,32 @@ const btnEditar = document.getElementById('btnEditar');
 
 btnEditar.addEventListener('click', () => {
     const dadoCliente = document.getElementById('editarBusca').value;
-    const tipo = document.getElementById('tipoBuscaEditar').value;
-    const dadoAntigo = document.getElementById('campo').value;
+    const tipoDeBusca = document.getElementById('tipoBuscaEditar').value;
+    const tipoMudanca = document.getElementById('campo').value;
     const novoDado = document.getElementById('novoValor').value;
 
-     const cliente = buscarCliente(tipo, dadoCliente);
-
+    const cliente = buscarCliente(tipoDeBusca, dadoCliente);
     const avisoConteudo = document.getElementById('avisoConteudoEditar');
     avisoConteudo.innerHTML = `
-        ID: ${cliente.id} |
-        CPF: ${cliente.cpf} |
-        Nome: ${cliente.nome} |
-        Telefone: ${cliente.telefone} |
-        Email: ${cliente.email} |
-        STATUS: ${cliente.status}
-    `;
-    
-    
-    editarCliente(tipo, dadoCliente , dadoAntigo , novoDado);
-
-
-    const avisoConteudo2 = document.getElementById('avisoConteudoEditar2');
-    avisoConteudo2.innerHTML = `
-        NOVO DADO → ${dadoAntigo.toUpperCase()} = ${novoDado}
+         ID: ${cliente.id} |
+         CPF: ${cliente.cpf} |
+         Nome: ${cliente.nome} |
+         Telefone: ${cliente.telefone} |
+         Email: ${cliente.email} |
+         STATUS: ${cliente.status}
     `;
 
-    document.getElementById('avisoEditar').classList.remove('hidden');
+    if (editarCliente(tipoDeBusca, dadoCliente , tipoMudanca , novoDado) === false){
+        return;
+    } else {
+        
+        const avisoConteudo2 = document.getElementById('avisoConteudoEditar2');
+        avisoConteudo2.innerHTML = `
+        NOVO DADO → ${tipoMudanca.toUpperCase()} = ${novoDado}
+        `;
+        
+        document.getElementById('avisoEditar').classList.remove('hidden');
+    }
 });
 
 const fecharAvisoEditar = document.getElementById('fecharAvisoEditar');
