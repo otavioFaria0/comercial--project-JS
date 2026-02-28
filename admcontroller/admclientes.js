@@ -82,6 +82,12 @@ btnEditar.addEventListener('click', () => {
     const novoDado = document.getElementById('novoValor').value;
 
     const cliente = buscarCliente(tipoDeBusca, dadoCliente);
+
+    if (!cliente){
+        alert('Cliente não encontrado.');
+        return;
+    }
+
     const avisoConteudo = document.getElementById('avisoConteudoEditar');
     avisoConteudo.innerHTML = `
          ID: ${cliente.id} |
@@ -98,7 +104,7 @@ btnEditar.addEventListener('click', () => {
         
         const avisoConteudo2 = document.getElementById('avisoConteudoEditar2');
         avisoConteudo2.innerHTML = `
-        NOVO DADO → ${tipoMudanca.toUpperCase()} = ${novoDado}
+        NOVO DADO → ${tipoMudanca.toUpperCase()} = ${novoDado.toUpperCase()}
         `;
         
         document.getElementById('avisoEditar').classList.remove('hidden');
@@ -133,7 +139,7 @@ btnApagar.addEventListener('click', () => {
     const statusPadronizado = (cliente.status).toUpperCase();
     
 
-    if (statusPadronizado === 'EM DIVIDA'){
+    if (statusPadronizado === 'PENDENTE'){
         alert('Nao pode excluir um cliente em divida');
         return;
     }
