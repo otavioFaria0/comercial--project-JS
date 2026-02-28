@@ -7,31 +7,54 @@
 </head>
 
 <body class="container">
-    <h2>Gerar Pedido</h2>
+    <div class="area-blocos">
 
-    <label>ID do Cliente:</label><br>
-    <input id="idCliente" type="number"><br><br>
+        <div class="bloco">
+            <h2>Gerar Pedido</h2>
 
-    <label>ID do Produto:</label><br>
-    <input id="idProduto" type="number"><br><br>
+            <label>ID do Cliente:</label>
+            <input id="idCliente" type="number">
 
-    <label>Quantidade:</label><br>
-    <input id="quantidade" type="number"><br><br>
+            <label>ID do Produto:</label>
+            <input id="idProduto" type="number">
 
-    <button id="btnGerar">Gerar Pedido</button>
+            <label>Quantidade:</label>
+            <input id="quantidade" type="number">
 
-    <h2 id="hidden1" class="hidden">Resultado</h2>
-    <pre id="resultadoGerar"></pre>
+            <button id="btnGerar" class="btn-pedido">Gerar Pedido</button>
 
-    <h2>Buscar Pedido</h2>
+            <h3 id="hidden1" class="hidden">Resultado</h3>
+            <pre id="resultadoGerar"></pre>
+        </div>
 
-    <label>ID do Pedido:</label><br>
-    <input id="idPedidoBuscar" type="number"><br><br>
+        <div class="bloco">
+            <h2>Buscar Pedido</h2>
 
-    <button id="btnBuscar">Buscar Pedido</button>
+            <label>ID do Pedido:</label>
+            <input id="idPedidoBuscar" type="number">
 
-    <h2 id="hidden2" class="hidden">Resultado da Busca</h2>
-    <pre id="resultadoBusca"></pre>
+            <button id="btnBuscar" class="btn-pedido">Buscar Pedido</button>
+
+            <h3 id="hidden2" class="hidden">Resultado da Busca</h3>
+            <pre id="resultadoBusca"></pre>
+        </div>
+        <div class="bloco">
+            <h2>Confirmar ou Cancelar</h2>
+
+            <label>ID do Pedido:</label>
+            <input id="idPedidoConfirmar" type="number">
+            
+            <button id="btnConfirmar" class="btn-pedido">Confirmar Pedido</button>
+            <button id="btnCancelar" class="btn-pedido">Cancelar Pedido</button>
+            
+            <h3 id="hidden3" class="hidden">Resultado da Confirmação</h3>
+            <pre id="resultadoConfirmacao"></pre>
+
+            <h3 id="hidden4" class="hidden">Resultado da Cancelamento</h3>
+            <pre id="resultadoCancelamento"></pre>
+        </div>
+
+    </div>
 
     <script type="module" src="./admpedidos.js"></script>
 </body>
