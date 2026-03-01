@@ -3,11 +3,11 @@
 ## Descrição
 Este é um **projeto pessoal**, desenvolvido com o objetivo de **consolidar fundamentos de programação e engenharia de software** antes de avançar definitivamente para o desenvolvimento **backend em Java**. Interrompi temporariamente meus estudos na linguagem para me desafiar a criar um projeto real e funcional.
 
-A motivação principal foi praticar conceitos que eu já conhecia, aprofundar novos aprendizados e estruturar um sistema de forma correta, pensando desde o início em **organização, desempenho e regras de negócio, boas práticas**, e não apenas em interface, lição que obtive devido a estar lendo o livro Como ser um programador melhor. Também utilizei essa prática para aplicar conceitos estudados no livro **Entendendo Algoritmos**, servindo como base sólida para evoluções futuras.
+A motivação principal foi praticar conceitos que eu já conhecia, aprofundar novos aprendizados e estruturar um sistema de forma correta, pensando desde o início em **organização, desempenho,regras de negócio, boas práticas**, e não apenas em interface, lição que obtive devido a estar lendo o livro Como ser um programador melhor. Também utilizei essa prática para aplicar conceitos estudados no livro **Entendendo Algoritmos**, servindo como base sólida para evoluções futuras.
 
 Busquei não utilizar muitas funções extravagantes do **JavaScript** pois o foco era aprender e solidificar os conteúdos, portanto, tenho pleno conhecimento de como implementar aquelas que utilizei. 
 
-Este projeto **não foi desenvolvido com foco visual**, mas sim como um exercício de engenharia de software, priorizando **lógica, organização, arquitetura bacl-end e boas práticas**. Ele representa a base do meu portfólio atual e servirá como referência direta para minha evolução no ecossistema Java mais adiante, com opção para reformulação futura.
+Este projeto **não foi desenvolvido com foco visual**, mas sim como um exercício de engenharia de software, priorizando **lógica, organização, arquitetura back-end e boas práticas**. Ele representa a base do meu portfólio atual e servirá como referência direta para minha evolução no ecossistema Java mais adiante, com opção para reformulação futura.
 
 ---
 
@@ -52,6 +52,10 @@ CSS3
 localStorage
 
 ---
+## Como utilizar esse projeto
+- Copie o repositório no seu VS Code
+- Abra o index.html com o LiveServer
+- Ou acesse o link https://comercial-js-project.vercel.app/
 
 ## Estrutura do Projeto
 ```text
