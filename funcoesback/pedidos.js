@@ -68,6 +68,9 @@ export function gerarPedido(idCliente, idProduto, quantidade){
     
     logSistema('PEDIDO', 'GERAR', id, `Pedido gerado para Cliente ${cliente.id}, Produto ${produto.id}`, null, pedido, data);
     
+    const novoEstoque = produto.estoque - pedido.quantidade;
+
+    editarProduto(pedido.produto, 'estoque', novoEstoque);
     editarCliente('id', idCliente, 'status', 'PENDENTE');
     salvarDados('pedidos' , pedidos);
     localStorage.setItem('maiorIdPedidos' , id + 1);
@@ -94,12 +97,9 @@ export function confirmarPedidos(idDoPedido){
     
     const produto = buscarProduto('id' , pedido.produto);
 
-    const novoEstoque = produto.estoque - pedido.quantidade;
-
     logSistema('PEDIDO', 'CONFIRMAR', idDoPedido, `Pedido confirmado para Cliente ${pedido.cliente}, Produto ${pedido.produto}`, 'PENDENTE', 'CONFIRMADO', undefined);
 
-    editarCliente('id', pedido.cliente, 'status', 'CONFIRMADO');
-    editarProduto(pedido.produto, 'estoque', novoEstoque);  
+    editarCliente('id', pedido.cliente, 'status', 'CONFIRMADO');  
     
     pedido.status = 'CONFIRMADO';
     indicePedidos[idDoPedido] = pedido;
@@ -110,18 +110,19 @@ export function confirmarPedidos(idDoPedido){
 
 export function cancelarPedidos(idDoPedido){
     const pedido = buscarPedido(idDoPedido);
-    
+    const produto = buscarProduto('id', pedido.produto);
     if (!pedido){
         alert('Pedido nao encontrado');
         return;
     }
 
     logSistema('PEDIDO', 'CANCELAR', idDoPedido, `Pedido cancelado para Cliente ${pedido.cliente}, Produto ${pedido.produto}`, 'PENDENTE', 'CANCELADO', undefined);
-    
+    editarProduto(pedido.produto, 'estoque', produto.estoque + pedido.quantidade);
     editarCliente('id', pedido.cliente, 'status', 'ABERTO');
 
     pedido.status = 'CANCELADO';
     indicePedidos[idDoPedido] = pedido;
+    
     salvarDados('pedidos' , pedidos);
 }
 

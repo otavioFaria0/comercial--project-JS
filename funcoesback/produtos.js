@@ -112,7 +112,7 @@ export function editarProduto(id, mudanca, dadoNovo){
         salvarDados('produtos' , produtos);
     }
 
-    logSistema('PRODUTO', 'EDITAR', id, `Editou o produto ${produto.nome}`, dadoAntigo, dadoNovo, undefined);
+    logSistema('PRODUTO', 'EDITAR', id, `Editou ${mudanca} do produto ${produto.nome}`, dadoAntigo, dadoNovo, undefined);
 }
 
 export function apagarProduto(dadoDeBusca){
