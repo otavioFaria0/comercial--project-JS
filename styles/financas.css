@@ -1,0 +1,56 @@
+body {
+    margin: 0;
+    background: linear-gradient(135deg, #1f3b57, #142838);
+    color: #ffffff;
+}
+
+.relatorio-financas {
+    max-width: 500px;
+    margin: 60px auto;
+    padding: 0.2em;
+    background-color: #cbecff35;
+    box-shadow: 0 8px 30px rgba(0,0,0,0.25);
+    text-align: center;
+}
+
+.relatorio-financas h2 {
+    margin-bottom: 1px;
+    font-size: 2.2rem;
+    font-weight: 500;
+    color: #ffffff;
+    letter-spacing: 1px;
+}
+
+#totalVendido {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #2ecc71;
+    margin-top: 10px;
+}
+
+.relatorio-financas:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(54, 72, 128, 0.199);
+}
+
+h1 {
+    text-align: center;
+    margin-top: 40px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    color: #ffffff;
+}
+
+#totalVendido {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #2ecc71;
+    margin-top: 10px;
+}
+
+#totalEstoque {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #fee854;
+    margin-top: 10px;
+}
