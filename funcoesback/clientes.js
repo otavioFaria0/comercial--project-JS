@@ -39,6 +39,11 @@ export function criarCliente(nome, cpf, telefone, email){
         return false;
     }
 
+    if (indicePorCpf[normalizarCpf(cpf)]){
+        alert('CPF já cadastrado.');
+        return false;
+    }
+
     //validações individuais por campo
     const dadosValidados = validarCampos(nome, cpf, telefone, email);
     if (!dadosValidados) return false;
