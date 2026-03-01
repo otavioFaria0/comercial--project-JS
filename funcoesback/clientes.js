@@ -116,8 +116,8 @@ export function editarCliente(tipoDeBusca , dadoDeBusca, mudanca, dadoNovo){
     } else if (mudanca === 'status'){
         dadoNovo = dadoNovo.toUpperCase();
 
-        if (dadoNovo !== 'ABERTO' && dadoNovo !== 'PENDENTE'){
-            alert('Status deve ser ABERTO ou PENDENTE.');
+        if (dadoNovo !== 'ABERTO' && dadoNovo !== 'PENDENTE' && dadoNovo !== 'CONFIRMADO'){
+            alert('Status deve ser ABERTO, CONFIRMADO OU PENDENTE.');
             return false;
         } else if (dadoNovo === cliente.status){
             alert('Nenhuma alteração foi feita.');
@@ -132,7 +132,7 @@ export function editarCliente(tipoDeBusca , dadoDeBusca, mudanca, dadoNovo){
         salvarMudancas(cliente, mudanca, dadoNovo.trim().replace(/[^0-9]/g, ''));
     }
 
-    salvarDados('clientes' , clientes)
+    salvarDados('clientes' , clientes);
 }
 
 export function apagarCliente(tipoDeBusca, dadoDeBusca){
@@ -149,7 +149,7 @@ export function apagarCliente(tipoDeBusca, dadoDeBusca){
 
     clientes.splice(indiceDoCliente, 1);
 
-    salvarDados('clientes' , clientes)
+    salvarDados('clientes' , clientes);
 }
 
 export function validarCliente(cliente){

@@ -1,27 +1,19 @@
  import { salvarDados, buscarLista, limparLista} from "./locstorage.js";
- import { buscarCliente} from './clientes.js';
+ import { buscarCliente, editarCliente} from './clientes.js';
  import { buscarProduto, editarProduto} from './produtos.js'
 
 
 let indicePedidos = {};
 let pedidos = [];
-let pedidosPorCliente = {};
 
 export function inicializacaoPedidos(){
         indicePedidos = {};
-        pedidosPorCliente = {};
         pedidos = buscarLista('pedidos') || [];
 
         for (let i = 0; i < pedidos.length; i++){
             const pedido = pedidos[i];
 
             indicePedidos[pedido.id] = pedido;
-
-            if (!pedidosPorCliente[pedido.cliente]) {
-                pedidosPorCliente[pedido.cliente] = [];
-            }
-
-            pedidosPorCliente[pedido.cliente].push(pedido);
         }
     }
 
@@ -39,21 +31,26 @@ export function gerarPedido(idCliente, idProduto, quantidade){
     if (quantidade <= 0){
         alert('Quantidade inválida.');
         return false;
-    } else if (produto.estoque < quantidade){
+    } 
+    else if (produto.estoque < quantidade){
         alert('Estoque insuficiente.');
         return false;
-    } else if (!produto.ativo){
+    } 
+    else if (!produto.ativo){
         alert('Produto inativo.');
         return false;
     } 
+    else if (cliente.status === 'PENDENTE'){
+        alert('Cliente está com pendência.');
+        return false;
+    }
     
     
     const id = Number(localStorage.getItem('maiorIdPedidos')) || 1;
 
     const valor = quantidade *produto.preco;
-    const novoEstoque = produto.estoque - quantidade;
 
-    const data = new Date();
+    const data = new Date().toLocaleString();
 
     const pedido = {
         id: id,
@@ -62,15 +59,13 @@ export function gerarPedido(idCliente, idProduto, quantidade){
         quantidade: quantidade,
         valor: valor,
         data: data,
-        status: 'ABERTO'
+        status: 'PENDENTE'
     }
-
-    editarProduto(idProduto, 'estoque', novoEstoque);
-
+    
     pedidos.unshift(pedido);
     indicePedidos[id]= pedido;
-    pedidosPorCliente[pedido.cliente].unshift(pedido);
-
+    
+    editarCliente('id', idCliente, 'status', 'PENDENTE');
     salvarDados('pedidos' , pedidos);
     localStorage.setItem('maiorIdPedidos' , id + 1);
 
@@ -83,15 +78,43 @@ export function buscarPedido(idDoPedido){
 
 export function confirmarPedidos(idDoPedido){
     const pedido = buscarPedido(idDoPedido);
-    const cliente = buscarCliente('id', pedido.cliente);
+    
+    if (!pedido){
+        alert('Pedido nao encontrado');
+        return false;
+    }
+    
+    if (pedido.status === 'CONFIRMADO' || pedido.status === 'CANCELADO'){
+        alert('Pedido já foi processado.');
+        return false;
+    }
+    
+    const produto = buscarProduto('id' , pedido.produto);
 
+    const novoEstoque = produto.estoque - pedido.quantidade;
+
+    editarCliente('id', pedido.cliente, 'status', 'CONFIRMADO');
+    editarProduto(pedido.produto, 'estoque', novoEstoque);  
+    
+    pedido.status = 'CONFIRMADO';
+    indicePedidos[idDoPedido] = pedido;
+    salvarDados('pedidos' , pedidos);
+
+    return true;
+}
+
+export function cancelarPedidos(idDoPedido){
+    const pedido = buscarPedido(idDoPedido);
+    
     if (!pedido){
         alert('Pedido nao encontrado');
         return;
     }
 
-    
-    
+    editarCliente('id', pedido.cliente, 'status', 'ABERTO');
+    pedido.status = 'CANCELADO';
+    indicePedidos[idDoPedido] = pedido;
+    salvarDados('pedidos' , pedidos);
 }
 
 
