@@ -104,7 +104,7 @@ btnEditar.addEventListener('click', () => {
 
     const avisoConteudo2 = document.getElementById('avisoConteudoEditar2');
     const dadoAlterado = mudanca.toUpperCase();
-    avisoConteudo2.innerHTML += `
+    avisoConteudo2.innerHTML = `
         NOVO DADO → ${dadoAlterado} = ${dadoNovo}
     `;
 });
