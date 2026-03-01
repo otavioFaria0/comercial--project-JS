@@ -1,4 +1,5 @@
 import { salvarDados, buscarLista, limparLista} from "./locstorage.js";
+import { logSistema } from "./logSistema.js";
 
     let indicePorIdProdutos = {};
     let indicePorNomeProdutos = {};
@@ -74,6 +75,8 @@ export function criarProduto(nome, preco, estoque, categoria){
     indicePorIdProdutos[id]=produto;
     indicePorNomeProdutos[nome] = produto;
 
+    logSistema('PRODUTO', 'CRIAR', id, `Criou o produto ${nome}`, null, produto, undefined);
+
     salvarDados('produtos', produtos);
     localStorage.setItem('maiorIdProdutos', id + 1);
 }
@@ -98,6 +101,8 @@ export function editarProduto(id, mudanca, dadoNovo){
     let produto = buscarProduto('id', id);
 
     if (!validarProduto(produto)) return; 
+
+    let dadoAntigo = produto[mudanca];
 
     if (mudanca === 'ativo'){
         if (dadoNovo === 'true'){
@@ -131,6 +136,7 @@ export function editarProduto(id, mudanca, dadoNovo){
         salvarDados('produtos' , produtos);
     }
 
+    logSistema('PRODUTO', 'EDITAR', id, `Editou o produto ${produto.nome}`, dadoAntigo, dadoNovo, undefined);
 }
 
 export function apagarProduto(dadoDeBusca){
@@ -146,6 +152,7 @@ export function apagarProduto(dadoDeBusca){
 
     produtos.splice(indiceDoProduto, 1);
 
+    logSistema('PRODUTO', 'APAGAR', dadoDeBusca, `Apagou o produto ${produto.nome}`, produto, null, undefined);
     salvarDados('produtos' , produtos)
 }
 

@@ -1,6 +1,7 @@
  import { salvarDados, buscarLista, limparLista} from "./locstorage.js";
  import { buscarCliente, editarCliente} from './clientes.js';
  import { buscarProduto, editarProduto} from './produtos.js'
+import { logSistema } from "./logSistema.js";
 
 
 let indicePedidos = {};
@@ -65,6 +66,8 @@ export function gerarPedido(idCliente, idProduto, quantidade){
     pedidos.unshift(pedido);
     indicePedidos[id]= pedido;
     
+    logSistema('PEDIDO', 'GERAR', id, `Pedido gerado para Cliente ${cliente.id}, Produto ${produto.id}`, null, pedido, data);
+    
     editarCliente('id', idCliente, 'status', 'PENDENTE');
     salvarDados('pedidos' , pedidos);
     localStorage.setItem('maiorIdPedidos' , id + 1);
@@ -93,6 +96,8 @@ export function confirmarPedidos(idDoPedido){
 
     const novoEstoque = produto.estoque - pedido.quantidade;
 
+    logSistema('PEDIDO', 'CONFIRMAR', idDoPedido, `Pedido confirmado para Cliente ${pedido.cliente}, Produto ${pedido.produto}`, 'PENDENTE', 'CONFIRMADO', undefined);
+
     editarCliente('id', pedido.cliente, 'status', 'CONFIRMADO');
     editarProduto(pedido.produto, 'estoque', novoEstoque);  
     
@@ -111,7 +116,10 @@ export function cancelarPedidos(idDoPedido){
         return;
     }
 
+    logSistema('PEDIDO', 'CANCELAR', idDoPedido, `Pedido cancelado para Cliente ${pedido.cliente}, Produto ${pedido.produto}`, 'PENDENTE', 'CANCELADO', undefined);
+    
     editarCliente('id', pedido.cliente, 'status', 'ABERTO');
+
     pedido.status = 'CANCELADO';
     indicePedidos[idDoPedido] = pedido;
     salvarDados('pedidos' , pedidos);

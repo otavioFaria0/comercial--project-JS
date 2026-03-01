@@ -1,4 +1,5 @@
  import { salvarDados, buscarLista } from "./locstorage.js";
+import { logSistema } from "./logSistema.js";
 
     let indicePorCpf = {};
     let indicePorIdClientes = {};
@@ -58,6 +59,8 @@ export function criarCliente(nome, cpf, telefone, email){
     indicePorCpf[cliente.cpf]=cliente;
     indicePorIdClientes[id]=cliente;
 
+    logSistema('CLIENTE', 'CRIAR', id, 'Novo cliente criado', null, cliente, undefined);
+
     salvarDados('clientes', clientes);//altera a lista inteira e salva ela no localStorage
 
     localStorage.setItem('maiorid', id+1);
@@ -81,6 +84,7 @@ export function editarCliente(tipoDeBusca , dadoDeBusca, mudanca, dadoNovo){
     }
 
     let cliente = buscarCliente(tipoDeBusca, dadoDeBusca);
+    let dadoAntigo = cliente[mudanca];
 
     if (!cliente){
         alert('Cliente não encontrado.');
@@ -132,6 +136,7 @@ export function editarCliente(tipoDeBusca , dadoDeBusca, mudanca, dadoNovo){
         salvarMudancas(cliente, mudanca, dadoNovo.trim().replace(/[^0-9]/g, ''));
     }
 
+    logSistema('CLIENTE', 'EDITAR', cliente.id, 'Alterou ' + mudanca + ' do cliente', dadoAntigo, dadoNovo, undefined);
     salvarDados('clientes' , clientes);
 }
 
@@ -149,6 +154,7 @@ export function apagarCliente(tipoDeBusca, dadoDeBusca){
 
     clientes.splice(indiceDoCliente, 1);
 
+    logSistema('CLIENTE', 'APAGAR', cliente.id, 'Apagou o cliente', cliente, null, undefined);
     salvarDados('clientes' , clientes);
 }
 
