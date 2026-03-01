@@ -5,7 +5,9 @@ Este é um **projeto pessoal**, desenvolvido com o objetivo de **consolidar fund
 
 A motivação principal foi praticar conceitos que eu já conhecia, aprofundar novos aprendizados e estruturar um sistema de forma correta, pensando desde o início em **organização, desempenho e regras de negócio, boas práticas**, e não apenas em interface, lição que obtive devido a estar lendo o livro Como ser um programador melhor. Também utilizei essa prática para aplicar conceitos estudados no livro **Entendendo Algoritmos**, servindo como base sólida para evoluções futuras.
 
-Este projeto não foi desenvolvido com foco visual, mas sim como um exercício de engenharia de software, priorizando lógica, organização, arquitetura bacl-end e boas práticas. Ele representa a base do meu portfólio atual e servirá como referência direta para minha evolução no ecossistema Java.
+Busquei não utilizar muitas funções extravagantes do **JavaScript** pois o foco era aprender e solidificar os conteúdos, portanto, tenho pleno conhecimento de como implementar aquelas que utilizei. 
+
+Este projeto **não foi desenvolvido com foco visual**, mas sim como um exercício de engenharia de software, priorizando **lógica, organização, arquitetura bacl-end e boas práticas**. Ele representa a base do meu portfólio atual e servirá como referência direta para minha evolução no ecossistema Java mais adiante, com opção para reformulação futura.
 
 ---
 
@@ -49,8 +51,6 @@ CSS3
 
 localStorage
 
-Este projeto não foi desenvolvido com foco visual, mas sim como um exercício de engenharia de software, priorizando lógica, organização e boas práticas. Ele representa a base do meu portfólio atual e servirá como referência direta para minha evolução no ecossistema Java.
-
 ---
 
 ## Estrutura do Projeto
@@ -69,5 +69,3 @@ admcontroller/
  ├── Interfaces administrativas
 styles/
  ├── CSS organizado por módulo
- 
----
