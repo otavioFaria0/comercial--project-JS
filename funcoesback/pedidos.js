@@ -6,6 +6,7 @@ import { logSistema } from "./logSistema.js";
 
 let indicePedidos = {};
 let pedidos = [];
+let totalVendido = 0;
 
 export function inicializacaoPedidos(){
         indicePedidos = {};
@@ -15,8 +16,13 @@ export function inicializacaoPedidos(){
             const pedido = pedidos[i];
 
             indicePedidos[pedido.id] = pedido;
+
+            if (pedido.status === 'CONFIRMADO'){
+                totalVendido += pedido.valor;
+            }
         }
-    }
+        return totalVendido;
+}
 
 
 export function gerarPedido(idCliente, idProduto, quantidade){
@@ -115,6 +121,11 @@ export function cancelarPedidos(idDoPedido){
     if (!pedido){
         alert('Pedido nao encontrado');
         return;
+    }
+
+    if (pedido.status === 'CONFIRMADO' || pedido.status === 'CANCELADO'){
+        alert('Pedido já foi processado.');
+        return false;
     }
 
     logSistema('PEDIDO', 'CANCELAR', idDoPedido, `Pedido cancelado para Cliente ${pedido.cliente}, Produto ${pedido.produto}`, 'PENDENTE', 'CANCELADO', undefined);
