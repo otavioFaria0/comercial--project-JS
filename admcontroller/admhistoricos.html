@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Listagens do Sistema</title>
+    <link rel="stylesheet" href="/styles/listas.css">
+</head>
+<body>
+
+    <h1>Histórico de Dados</h1>
+
+    <div class="painel-controle">
+        <label>Escolha a lista:</label>
+        <select id="tipoLista">
+            <option value="todos">Todos</option>
+            <option value="clientes">Clientes</option>
+            <option value="produtos">Produtos</option>
+            <option value="pedidos">Pedidos</option>
+        </select>
+        <button id="btnCarregarLogs">Carregar</button>
+    </div>
+    <div class="tabela-container">
+        <table id="tabelaDados">
+            <thead id="cabecalho"></thead>
+            <tbody id="corpoTabela"></tbody>
+        </table>
+    </div>
+
+    <script type="module" src="admhistoricos.js"></script>
+</body>
+</html>

@@ -25,6 +25,16 @@ export function montarTabela(dados) {
         let linha = '<tr>';
 
         colunas.forEach(coluna => {
+            if (coluna === 'status' || coluna === 'ativo') {
+
+                if (item[coluna] === 'CONFIRMADO' || item[coluna] === true) {
+                    linha += `<td class="status-ativo">${item[coluna]}</td>`;
+                    return;
+                } else if (item[coluna] === 'CANCELADO' || item[coluna] === false || item[coluna] === 'AGUARDANDO') {
+                    linha += `<td class="status-inativo">${item[coluna]}</td>`
+                    return;
+                }
+            }
             linha += `<td>${item[coluna]}</td>`;
         });
 

@@ -41,7 +41,7 @@ export function gerarPedido(idCliente, idProduto, quantidade){
         alert('Produto inativo.');
         return false;
     } 
-    else if (cliente.status === 'PENDENTE'){
+    else if (cliente.status === 'AGUARDANDO'){
         alert('Cliente está com pendência.');
         return false;
     }
@@ -71,7 +71,7 @@ export function gerarPedido(idCliente, idProduto, quantidade){
     const novoEstoque = produto.estoque - pedido.quantidade;
 
     editarProduto(pedido.produto, 'estoque', novoEstoque);
-    editarCliente('id', idCliente, 'status', 'PENDENTE');
+    editarCliente('id', idCliente, 'status', 'AGUARDANDO');
     salvarDados('pedidos' , pedidos);
     localStorage.setItem('maiorIdPedidos' , id + 1);
 
@@ -111,6 +111,7 @@ export function confirmarPedidos(idDoPedido){
 export function cancelarPedidos(idDoPedido){
     const pedido = buscarPedido(idDoPedido);
     const produto = buscarProduto('id', pedido.produto);
+    
     if (!pedido){
         alert('Pedido nao encontrado');
         return;

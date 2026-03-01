@@ -139,7 +139,7 @@ btnApagar.addEventListener('click', () => {
     const statusPadronizado = (cliente.status).toUpperCase();
     
 
-    if (statusPadronizado === 'PENDENTE'){
+    if (statusPadronizado === 'AGUARDANDO'){
         alert('Nao pode excluir um cliente em divida');
         return;
     }

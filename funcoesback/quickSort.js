@@ -18,7 +18,7 @@ export function quickSort(array, campo) {
         let valorAtual = array[i][campo];
 
         if (typeof valorAtual === 'string') {
-        valorAtual = valorAtual.toLowerCase().trim();
+            valorAtual = valorAtual.toLowerCase().trim();
         }
 
         if (valorAtual < pivo) {

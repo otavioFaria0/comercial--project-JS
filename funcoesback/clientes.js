@@ -120,8 +120,8 @@ export function editarCliente(tipoDeBusca , dadoDeBusca, mudanca, dadoNovo){
     } else if (mudanca === 'status'){
         dadoNovo = dadoNovo.toUpperCase();
 
-        if (dadoNovo !== 'ABERTO' && dadoNovo !== 'PENDENTE' && dadoNovo !== 'CONFIRMADO'){
-            alert('Status deve ser ABERTO, CONFIRMADO OU PENDENTE.');
+        if (dadoNovo !== 'ABERTO' && dadoNovo !== 'AGUARDANDO' && dadoNovo !== 'CONFIRMADO'){
+            alert('Status deve ser ABERTO, CONFIRMADO OU AGUARDANDO.');
             return false;
         } else if (dadoNovo === cliente.status){
             alert('Nenhuma alteração foi feita.');
