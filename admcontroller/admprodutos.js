@@ -94,7 +94,7 @@ btnEditar.addEventListener('click', () => {
         Estoque: ${produto.estoque} |
         Ativo: ${produto.ativo}`;
 
-        editarProduto(idDoProduto, mudanca, dadoNovo)
+        if (editarProduto(idDoProduto, mudanca, dadoNovo) === false) return;
     } else {
         alert('Por favor, preencha todos os campos');
         return;

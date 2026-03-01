@@ -27,33 +27,7 @@ export function criarProduto(nome, preco, estoque, categoria){
     let ativo = true;
 
     // validações individuais por campo
-    // nome
-    if (nome.length <= 3 || nome.length > 30){
-        alert('Por favor, digite um nome valido.');
-        return;
-    }
-    if (indicePorNomeProdutos[nome]){
-        alert('Já existe um produto registrado com esse nome.')
-        return;
-    }
-
-    // preco
-    if (isNaN(preco) || preco <= 0 || preco > 100000){
-        alert('Por favor, digite um preço valido.');
-        return;
-    } 
-
-    // estoque
-    if (isNaN(estoque) || estoque < 0){
-        alert('Por favor, digite um estoque valido.');
-        return;
-    }
-
-    // categoria
-    if (categoria.length <= 3 || categoria.length > 30 || /[0-9]/.test(categoria) === true){
-        alert('Por favor, digite uma categoria valida.');
-        return;
-    }
+    const dadosValidos = validarCampos(nome, preco, estoque, categoria);
 
     if (Number(estoque) === 0){
         ativo=false;
@@ -61,10 +35,10 @@ export function criarProduto(nome, preco, estoque, categoria){
 
     
     const produto = {
-        nome: nome,
-        preco: preco,
-        estoque: estoque,
-        categoria: categoria,
+        nome: dadosValidos.nome,
+        preco: dadosValidos.preco,
+        estoque: dadosValidos.estoque,
+        categoria: dadosValidos.categoria,
         ativo: ativo
     }
 
@@ -95,12 +69,13 @@ export function buscarProduto(tipoDeBusca, dadoDeBusca){
 export function editarProduto(id, mudanca, dadoNovo){
 
     if (mudanca === 'id'){
-        return alert('ID não pode ser alterado.');
+        alert('ID não pode ser alterado.')
+        return false;
     }
 
     let produto = buscarProduto('id', id);
 
-    if (!validarProduto(produto)) return; 
+    if (!validarProduto(produto)) return false; 
 
     let dadoAntigo = produto[mudanca];
 
@@ -108,14 +83,14 @@ export function editarProduto(id, mudanca, dadoNovo){
         if (dadoNovo === 'true'){
             produto.ativo = true;
             salvarDados('produtos' , produtos);
-            return;
+            return false;
         } else if (dadoNovo === 'false') {
             produto.ativo = false;
             salvarDados('produtos' , produtos);
-            return;
+            return false;
         } else {
             alert('Ativo deve ser true ou false.');
-            return;
+            return false;
         }
     }
     if (mudanca === 'estoque'){
@@ -129,10 +104,11 @@ export function editarProduto(id, mudanca, dadoNovo){
             salvarDados('produtos' , produtos);
         } else {
             alert('Quantidade indevida.')
-            return;
+            return false;
         }
     } else {
         produto[mudanca]=dadoNovo;
+        if (validarCampos(produto.nome, produto.preco, produto.estoque, produto.categoria) === false) return false;
         salvarDados('produtos' , produtos);
     }
 
@@ -143,7 +119,7 @@ export function apagarProduto(dadoDeBusca){
 
     let produto = indicePorIdProdutos[dadoDeBusca];
 
-    if (!validarProduto(produto)) return;
+    if (!validarProduto(produto)) return false;
 
     delete indicePorIdProdutos[dadoDeBusca];
     delete indicePorNomeProdutos[produto.nome];
@@ -169,4 +145,37 @@ function validarProduto(produto){
 
 function formatarNome(nome){
     return nome.trim().toLowerCase();
+}
+
+function validarCampos(nome, preco, estoque, categoria){
+    if (nome.length <= 3 || nome.length > 30){
+        alert('Por favor, digite um nome valido.');
+        return false;
+    }
+    if (indicePorNomeProdutos[nome]){
+        alert('Já existe um produto registrado com esse nome.')
+        return false;
+    }
+
+    if (isNaN(preco) || preco <= 0 || preco > 100000){
+        alert('Por favor, digite um preço valido.');
+        return false;
+    } 
+
+    if (isNaN(estoque) || estoque < 0){
+        alert('Por favor, digite um estoque valido.');
+        return false;
+    }
+
+    if (categoria.length <= 3 || categoria.length > 30 || /[0-9]/.test(categoria) === true){
+        alert('Por favor, digite uma categoria valida.');
+        return false;
+    }
+    
+    return {
+        nome: formatarNome(nome),
+        preco: preco.trim(),
+        estoque: estoque.trim(),
+        categoria: categoria.toLowerCase()
+    };
 }
